@@ -1,0 +1,16 @@
+2025-12-06 11:51:23 - __main__ - ERROR - check_database_connection:23 - Database connection error: (psycopg2.OperationalError) connection to server at "localhost" (::1), port 5433 failed: FATAL:  password authentication failed for user "postgres"
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-12-06 11:52:44 - __main__ - ERROR - check_database_connection:23 - Database connection error: (psycopg2.OperationalError) connection to server at "localhost" (::1), port 5433 failed: fe_sendauth: no password supplied
+
+(Background on this error at: https://sqlalche.me/e/20/e3q8)
+2025-12-06 11:53:16 - __main__ - INFO - check_database_connection:19 - Database connection established
+2025-12-06 11:53:16 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 11:53:16 - __main__ - INFO - initialize_database:43 - Database initialized successfully
+2025-12-06 11:53:37 - __main__ - INFO - check_database_connection:19 - Database connection established
+2025-12-06 11:53:37 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 11:53:37 - __main__ - INFO - initialize_database:43 - Database initialized successfully
+2025-12-06 11:56:02 - app.main - INFO - lifespan:16 - Starting application...
+2025-12-06 11:56:02 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 11:56:02 - app.main - INFO - lifespan:19 - Database initialized successfully
+2025-12-06 11:56:48 - app.main - INFO - lifespan:26 - Shutting down application...
