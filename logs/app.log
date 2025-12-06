@@ -14,3 +14,848 @@
 2025-12-06 11:56:02 - app.database - INFO - init_db:38 - Database tables created successfully
 2025-12-06 11:56:02 - app.main - INFO - lifespan:19 - Database initialized successfully
 2025-12-06 11:56:48 - app.main - INFO - lifespan:26 - Shutting down application...
+2025-12-06 12:07:29 - app.main - INFO - lifespan:16 - Starting application...
+2025-12-06 12:07:29 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 12:07:29 - app.main - INFO - lifespan:19 - Database initialized successfully
+2025-12-06 12:08:24 - app.api.v1.endpoints.auth - INFO - signup:20 - Signup request received for email: user@example.com
+2025-12-06 12:08:24 - app.services.auth_service - INFO - signup:17 - Signup attempt for email: user@example.com
+2025-12-06 12:08:24 - app.services.user_service - INFO - create_user:18 - Creating user with email: user@example.com
+2025-12-06 12:08:24 - app.core.security - ERROR - hash_password:20 - Error hashing password: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2025-12-06 12:08:24 - app.database - ERROR - get_db:28 - Database session error: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2025-12-06 12:08:24 - app.main - ERROR - general_exception_handler:57 - Unhandled exception: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72]) - Path: /api/v1/auth/signup
+Traceback (most recent call last):
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/routing.py", line 119, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 222, in __aexit__
+    await self.gen.athrow(typ, value, traceback)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/concurrency.py", line 35, in contextmanager_in_threadpool
+    raise e
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/concurrency.py", line 27, in contextmanager_in_threadpool
+    yield await run_in_threadpool(cm.__enter__)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/routing.py", line 105, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/routing.py", line 385, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/routing.py", line 284, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/app/api/v1/endpoints/auth.py", line 21, in signup
+    tokens = auth_service.signup(db, user_create)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/app/services/auth_service.py", line 19, in signup
+    user = self.user_service.create_user(db, user_create)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/app/services/user_service.py", line 24, in create_user
+    hashed_password = password_handler.hash_password(user_create.password)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/app/core/security.py", line 18, in hash_password
+    return pwd_context.hash(password)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/context.py", line 2258, in hash
+    return record.hash(secret, **kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 779, in hash
+    self.checksum = self._calc_checksum(secret)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    self._stub_requires_backend()
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    cls.set_backend()
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    return owner.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    return cls.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    cls._set_backend(name, dryrun)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    ok = loader(**kwds)
+         ^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/handlers/bcrypt.py", line 626, in _load_backend_mixin
+    return mixin_cls._finalize_backend_mixin(name, dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/handlers/bcrypt.py", line 421, in _finalize_backend_mixin
+    if detect_wrap_bug(IDENT_2A):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/handlers/bcrypt.py", line 380, in detect_wrap_bug
+    if verify(secret, bug_hash):
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 792, in verify
+    return consteq(self._calc_checksum(secret), chk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/handlers/bcrypt.py", line 655, in _calc_checksum
+    hash = _bcrypt.hashpw(secret, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2025-12-06 12:10:45 - app.main - INFO - lifespan:26 - Shutting down application...
+2025-12-06 12:10:46 - app.main - INFO - lifespan:16 - Starting application...
+2025-12-06 12:10:46 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 12:10:46 - app.main - INFO - lifespan:19 - Database initialized successfully
+2025-12-06 12:12:06 - app.api.v1.endpoints.auth - INFO - signup:20 - Signup request received for email: user@example.com
+2025-12-06 12:12:06 - app.services.auth_service - INFO - signup:17 - Signup attempt for email: user@example.com
+2025-12-06 12:12:06 - app.services.user_service - INFO - create_user:18 - Creating user with email: user@example.com
+2025-12-06 12:12:06 - app.core.security - ERROR - hash_password:21 - Error hashing password: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2025-12-06 12:12:06 - app.database - ERROR - get_db:28 - Database session error: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2025-12-06 12:12:06 - app.main - ERROR - general_exception_handler:57 - Unhandled exception: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72]) - Path: /api/v1/auth/signup
+Traceback (most recent call last):
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/routing.py", line 119, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 222, in __aexit__
+    await self.gen.athrow(typ, value, traceback)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/concurrency.py", line 35, in contextmanager_in_threadpool
+    raise e
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/concurrency.py", line 27, in contextmanager_in_threadpool
+    yield await run_in_threadpool(cm.__enter__)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/routing.py", line 105, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/routing.py", line 385, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/routing.py", line 284, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/app/api/v1/endpoints/auth.py", line 21, in signup
+    tokens = auth_service.signup(db, user_create)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/app/services/auth_service.py", line 19, in signup
+    user = self.user_service.create_user(db, user_create)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/app/services/user_service.py", line 24, in create_user
+    hashed_password = password_handler.hash_password(user_create.password)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/app/core/security.py", line 19, in hash_password
+    return pwd_context.hash(truncated_password)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/context.py", line 2258, in hash
+    return record.hash(secret, **kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 779, in hash
+    self.checksum = self._calc_checksum(secret)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    self._stub_requires_backend()
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    cls.set_backend()
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    return owner.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    return cls.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    cls._set_backend(name, dryrun)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    ok = loader(**kwds)
+         ^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/handlers/bcrypt.py", line 626, in _load_backend_mixin
+    return mixin_cls._finalize_backend_mixin(name, dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/handlers/bcrypt.py", line 421, in _finalize_backend_mixin
+    if detect_wrap_bug(IDENT_2A):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/handlers/bcrypt.py", line 380, in detect_wrap_bug
+    if verify(secret, bug_hash):
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 792, in verify
+    return consteq(self._calc_checksum(secret), chk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/handlers/bcrypt.py", line 655, in _calc_checksum
+    hash = _bcrypt.hashpw(secret, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2025-12-06 12:12:57 - app.main - INFO - lifespan:26 - Shutting down application...
+2025-12-06 12:12:58 - app.main - INFO - lifespan:16 - Starting application...
+2025-12-06 12:12:58 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 12:12:58 - app.main - INFO - lifespan:19 - Database initialized successfully
+2025-12-06 12:13:03 - app.main - INFO - lifespan:26 - Shutting down application...
+2025-12-06 12:13:04 - app.main - INFO - lifespan:16 - Starting application...
+2025-12-06 12:13:04 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 12:13:04 - app.main - INFO - lifespan:19 - Database initialized successfully
+2025-12-06 12:13:13 - app.main - INFO - lifespan:26 - Shutting down application...
+2025-12-06 12:13:13 - app.main - INFO - lifespan:16 - Starting application...
+2025-12-06 12:13:13 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 12:13:13 - app.main - INFO - lifespan:19 - Database initialized successfully
+2025-12-06 12:13:14 - app.main - INFO - lifespan:26 - Shutting down application...
+2025-12-06 12:13:15 - app.main - INFO - lifespan:16 - Starting application...
+2025-12-06 12:13:15 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 12:13:15 - app.main - INFO - lifespan:19 - Database initialized successfully
+2025-12-06 12:13:22 - app.main - INFO - lifespan:26 - Shutting down application...
+2025-12-06 12:13:23 - app.main - INFO - lifespan:16 - Starting application...
+2025-12-06 12:13:23 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 12:13:23 - app.main - INFO - lifespan:19 - Database initialized successfully
+2025-12-06 12:13:59 - app.main - INFO - lifespan:26 - Shutting down application...
+2025-12-06 12:14:00 - app.main - INFO - lifespan:16 - Starting application...
+2025-12-06 12:14:00 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 12:14:00 - app.main - INFO - lifespan:19 - Database initialized successfully
+2025-12-06 12:14:01 - app.main - INFO - lifespan:26 - Shutting down application...
+2025-12-06 12:14:02 - app.main - INFO - lifespan:16 - Starting application...
+2025-12-06 12:14:02 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 12:14:02 - app.main - INFO - lifespan:19 - Database initialized successfully
+2025-12-06 12:14:10 - app.main - INFO - lifespan:26 - Shutting down application...
+2025-12-06 12:14:11 - app.main - INFO - lifespan:16 - Starting application...
+2025-12-06 12:14:11 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 12:14:11 - app.main - INFO - lifespan:19 - Database initialized successfully
+2025-12-06 12:17:28 - app.api.v1.endpoints.auth - INFO - signup:20 - Signup request received for email: user@example.com
+2025-12-06 12:17:28 - app.services.auth_service - INFO - signup:17 - Signup attempt for email: user@example.com
+2025-12-06 12:17:28 - app.services.user_service - INFO - create_user:18 - Creating user with email: user@example.com
+2025-12-06 12:17:28 - app.core.security - ERROR - hash_password:19 - Error hashing password: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2025-12-06 12:17:28 - app.database - ERROR - get_db:28 - Database session error: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2025-12-06 12:17:28 - app.main - ERROR - general_exception_handler:57 - Unhandled exception: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72]) - Path: /api/v1/auth/signup
+Traceback (most recent call last):
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/routing.py", line 119, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 222, in __aexit__
+    await self.gen.athrow(typ, value, traceback)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/concurrency.py", line 35, in contextmanager_in_threadpool
+    raise e
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/concurrency.py", line 27, in contextmanager_in_threadpool
+    yield await run_in_threadpool(cm.__enter__)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/routing.py", line 105, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/routing.py", line 385, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/routing.py", line 284, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/app/api/v1/endpoints/auth.py", line 21, in signup
+    tokens = auth_service.signup(db, user_create)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/app/services/auth_service.py", line 19, in signup
+    user = self.user_service.create_user(db, user_create)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/app/services/user_service.py", line 24, in create_user
+    hashed_password = password_handler.hash_password(user_create.password)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/app/core/security.py", line 17, in hash_password
+    return pwd_context.hash(password)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/context.py", line 2258, in hash
+    return record.hash(secret, **kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 779, in hash
+    self.checksum = self._calc_checksum(secret)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    self._stub_requires_backend()
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    cls.set_backend()
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    return owner.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    return cls.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    cls._set_backend(name, dryrun)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    ok = loader(**kwds)
+         ^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/handlers/bcrypt.py", line 626, in _load_backend_mixin
+    return mixin_cls._finalize_backend_mixin(name, dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/handlers/bcrypt.py", line 421, in _finalize_backend_mixin
+    if detect_wrap_bug(IDENT_2A):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/handlers/bcrypt.py", line 380, in detect_wrap_bug
+    if verify(secret, bug_hash):
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 792, in verify
+    return consteq(self._calc_checksum(secret), chk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/handlers/bcrypt.py", line 655, in _calc_checksum
+    hash = _bcrypt.hashpw(secret, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2025-12-06 12:18:34 - app.main - INFO - lifespan:26 - Shutting down application...
+2025-12-06 12:18:35 - app.main - INFO - lifespan:16 - Starting application...
+2025-12-06 12:18:35 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 12:18:35 - app.main - INFO - lifespan:19 - Database initialized successfully
+2025-12-06 12:18:38 - app.api.v1.endpoints.auth - INFO - signup:20 - Signup request received for email: user@example.com
+2025-12-06 12:18:38 - app.services.auth_service - INFO - signup:17 - Signup attempt for email: user@example.com
+2025-12-06 12:18:38 - app.services.user_service - INFO - create_user:18 - Creating user with email: user@example.com
+2025-12-06 12:18:38 - app.core.security - ERROR - hash_password:20 - Error hashing password: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2025-12-06 12:18:38 - app.database - ERROR - get_db:28 - Database session error: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2025-12-06 12:18:38 - app.main - ERROR - general_exception_handler:57 - Unhandled exception: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72]) - Path: /api/v1/auth/signup
+Traceback (most recent call last):
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/routing.py", line 119, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 222, in __aexit__
+    await self.gen.athrow(typ, value, traceback)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/concurrency.py", line 35, in contextmanager_in_threadpool
+    raise e
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/concurrency.py", line 27, in contextmanager_in_threadpool
+    yield await run_in_threadpool(cm.__enter__)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/routing.py", line 105, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/routing.py", line 385, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/routing.py", line 284, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/app/api/v1/endpoints/auth.py", line 21, in signup
+    tokens = auth_service.signup(db, user_create)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/app/services/auth_service.py", line 19, in signup
+    user = self.user_service.create_user(db, user_create)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/app/services/user_service.py", line 24, in create_user
+    hashed_password = password_handler.hash_password(user_create.password)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/app/core/security.py", line 18, in hash_password
+    return pwd_context.hash(password_bytes.decode('utf-8'))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/context.py", line 2258, in hash
+    return record.hash(secret, **kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 779, in hash
+    self.checksum = self._calc_checksum(secret)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    self._stub_requires_backend()
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    cls.set_backend()
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    return owner.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    return cls.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    cls._set_backend(name, dryrun)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    ok = loader(**kwds)
+         ^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/handlers/bcrypt.py", line 626, in _load_backend_mixin
+    return mixin_cls._finalize_backend_mixin(name, dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/handlers/bcrypt.py", line 421, in _finalize_backend_mixin
+    if detect_wrap_bug(IDENT_2A):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/handlers/bcrypt.py", line 380, in detect_wrap_bug
+    if verify(secret, bug_hash):
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 792, in verify
+    return consteq(self._calc_checksum(secret), chk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/handlers/bcrypt.py", line 655, in _calc_checksum
+    hash = _bcrypt.hashpw(secret, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2025-12-06 12:19:25 - app.main - INFO - lifespan:26 - Shutting down application...
+2025-12-06 12:19:25 - app.main - INFO - lifespan:16 - Starting application...
+2025-12-06 12:19:25 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 12:19:25 - app.main - INFO - lifespan:19 - Database initialized successfully
+2025-12-06 12:19:36 - app.main - INFO - lifespan:26 - Shutting down application...
+2025-12-06 12:19:36 - app.main - INFO - lifespan:16 - Starting application...
+2025-12-06 12:19:36 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 12:19:36 - app.main - INFO - lifespan:19 - Database initialized successfully
+2025-12-06 12:19:43 - app.main - INFO - lifespan:26 - Shutting down application...
+2025-12-06 12:19:43 - app.main - INFO - lifespan:16 - Starting application...
+2025-12-06 12:19:43 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 12:19:43 - app.main - INFO - lifespan:19 - Database initialized successfully
+2025-12-06 12:19:47 - app.api.v1.endpoints.auth - INFO - signup:20 - Signup request received for email: user@example.com
+2025-12-06 12:19:47 - app.services.auth_service - INFO - signup:17 - Signup attempt for email: user@example.com
+2025-12-06 12:19:47 - app.services.user_service - INFO - create_user:18 - Creating user with email: user@example.com
+2025-12-06 12:19:47 - app.core.security - ERROR - hash_password:23 - Error hashing password: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2025-12-06 12:19:47 - app.database - ERROR - get_db:28 - Database session error: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2025-12-06 12:19:47 - app.main - ERROR - general_exception_handler:57 - Unhandled exception: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72]) - Path: /api/v1/auth/signup
+Traceback (most recent call last):
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/routing.py", line 119, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 222, in __aexit__
+    await self.gen.athrow(typ, value, traceback)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/concurrency.py", line 35, in contextmanager_in_threadpool
+    raise e
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/concurrency.py", line 27, in contextmanager_in_threadpool
+    yield await run_in_threadpool(cm.__enter__)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/routing.py", line 105, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/routing.py", line 385, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/routing.py", line 284, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/app/api/v1/endpoints/auth.py", line 21, in signup
+    tokens = auth_service.signup(db, user_create)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/app/services/auth_service.py", line 19, in signup
+    user = self.user_service.create_user(db, user_create)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/app/services/user_service.py", line 24, in create_user
+    hashed_password = password_handler.hash_password(user_create.password)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/app/core/security.py", line 21, in hash_password
+    return pwd_context.hash(password)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/context.py", line 2258, in hash
+    return record.hash(secret, **kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 779, in hash
+    self.checksum = self._calc_checksum(secret)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    self._stub_requires_backend()
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    cls.set_backend()
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    return owner.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    return cls.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    cls._set_backend(name, dryrun)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    ok = loader(**kwds)
+         ^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/handlers/bcrypt.py", line 626, in _load_backend_mixin
+    return mixin_cls._finalize_backend_mixin(name, dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/handlers/bcrypt.py", line 421, in _finalize_backend_mixin
+    if detect_wrap_bug(IDENT_2A):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/handlers/bcrypt.py", line 380, in detect_wrap_bug
+    if verify(secret, bug_hash):
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 792, in verify
+    return consteq(self._calc_checksum(secret), chk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/handlers/bcrypt.py", line 655, in _calc_checksum
+    hash = _bcrypt.hashpw(secret, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2025-12-06 12:19:58 - app.api.v1.endpoints.auth - INFO - signup:20 - Signup request received for email: user@example.com
+2025-12-06 12:19:58 - app.services.auth_service - INFO - signup:17 - Signup attempt for email: user@example.com
+2025-12-06 12:19:58 - app.services.user_service - INFO - create_user:18 - Creating user with email: user@example.com
+2025-12-06 12:19:58 - app.core.security - ERROR - hash_password:23 - Error hashing password: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2025-12-06 12:19:58 - app.database - ERROR - get_db:28 - Database session error: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2025-12-06 12:19:58 - app.main - ERROR - general_exception_handler:57 - Unhandled exception: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72]) - Path: /api/v1/auth/signup
+Traceback (most recent call last):
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/routing.py", line 119, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 222, in __aexit__
+    await self.gen.athrow(typ, value, traceback)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/concurrency.py", line 35, in contextmanager_in_threadpool
+    raise e
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/concurrency.py", line 27, in contextmanager_in_threadpool
+    yield await run_in_threadpool(cm.__enter__)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/routing.py", line 105, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/routing.py", line 385, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/routing.py", line 284, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/app/api/v1/endpoints/auth.py", line 21, in signup
+    tokens = auth_service.signup(db, user_create)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/app/services/auth_service.py", line 19, in signup
+    user = self.user_service.create_user(db, user_create)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/app/services/user_service.py", line 24, in create_user
+    hashed_password = password_handler.hash_password(user_create.password)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/app/core/security.py", line 21, in hash_password
+    return pwd_context.hash(password)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/context.py", line 2258, in hash
+    return record.hash(secret, **kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 779, in hash
+    self.checksum = self._calc_checksum(secret)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/handlers/bcrypt.py", line 591, in _calc_checksum
+    self._stub_requires_backend()
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2254, in _stub_requires_backend
+    cls.set_backend()
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2156, in set_backend
+    return owner.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2163, in set_backend
+    return cls.set_backend(name, dryrun=dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2188, in set_backend
+    cls._set_backend(name, dryrun)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2311, in _set_backend
+    super(SubclassBackendMixin, cls)._set_backend(name, dryrun)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 2224, in _set_backend
+    ok = loader(**kwds)
+         ^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/handlers/bcrypt.py", line 626, in _load_backend_mixin
+    return mixin_cls._finalize_backend_mixin(name, dryrun)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/handlers/bcrypt.py", line 421, in _finalize_backend_mixin
+    if detect_wrap_bug(IDENT_2A):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/handlers/bcrypt.py", line 380, in detect_wrap_bug
+    if verify(secret, bug_hash):
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/utils/handlers.py", line 792, in verify
+    return consteq(self._calc_checksum(secret), chk)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/passlib/handlers/bcrypt.py", line 655, in _calc_checksum
+    hash = _bcrypt.hashpw(secret, config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: password cannot be longer than 72 bytes, truncate manually if necessary (e.g. my_password[:72])
+2025-12-06 12:21:38 - app.main - INFO - lifespan:26 - Shutting down application...
+2025-12-06 12:21:40 - app.main - INFO - lifespan:16 - Starting application...
+2025-12-06 12:21:40 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 12:21:40 - app.main - INFO - lifespan:19 - Database initialized successfully
+2025-12-06 12:21:45 - app.api.v1.endpoints.auth - INFO - signup:20 - Signup request received for email: user@example.com
+2025-12-06 12:21:45 - app.services.auth_service - INFO - signup:17 - Signup attempt for email: user@example.com
+2025-12-06 12:21:45 - app.services.user_service - INFO - create_user:18 - Creating user with email: user@example.com
+2025-12-06 12:21:46 - app.repositories.base - INFO - create:23 - Created User with id: e2b6d26a-4c29-45d2-a3c7-2a90a7bbe890
+2025-12-06 12:21:46 - app.services.user_service - INFO - create_user:32 - User created successfully with id: e2b6d26a-4c29-45d2-a3c7-2a90a7bbe890
+2025-12-06 12:21:46 - app.services.auth_service - INFO - signup:24 - Signup successful for user: e2b6d26a-4c29-45d2-a3c7-2a90a7bbe890
+2025-12-06 12:21:46 - app.api.v1.endpoints.auth - INFO - signup:22 - Signup completed successfully
+2025-12-06 12:50:28 - app.api.v1.endpoints.auth - INFO - get_current_user_info:51 - User info request for user: e2b6d26a-4c29-45d2-a3c7-2a90a7bbe890
+2025-12-06 12:57:02 - app.main - INFO - lifespan:26 - Shutting down application...
+2025-12-06 12:57:03 - app.main - INFO - lifespan:16 - Starting application...
+2025-12-06 12:57:03 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 12:57:03 - app.main - INFO - lifespan:19 - Database initialized successfully
+2025-12-06 12:57:25 - app.main - INFO - lifespan:26 - Shutting down application...
+2025-12-06 12:57:25 - app.main - INFO - lifespan:16 - Starting application...
+2025-12-06 12:57:25 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 12:57:25 - app.main - INFO - lifespan:19 - Database initialized successfully
+2025-12-06 12:58:24 - app.main - INFO - lifespan:26 - Shutting down application...
+2025-12-06 12:58:25 - app.main - INFO - lifespan:16 - Starting application...
+2025-12-06 12:58:25 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 12:58:25 - app.main - INFO - lifespan:19 - Database initialized successfully
+2025-12-06 12:58:26 - app.main - INFO - lifespan:26 - Shutting down application...
+2025-12-06 12:58:26 - app.main - INFO - lifespan:16 - Starting application...
+2025-12-06 12:58:27 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 12:58:27 - app.main - INFO - lifespan:19 - Database initialized successfully
+2025-12-06 12:58:48 - app.main - INFO - lifespan:26 - Shutting down application...
+2025-12-06 12:58:49 - app.main - INFO - lifespan:16 - Starting application...
+2025-12-06 12:58:49 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 12:58:49 - app.main - INFO - lifespan:19 - Database initialized successfully
+2025-12-06 12:58:54 - app.main - INFO - lifespan:26 - Shutting down application...
+2025-12-06 12:58:55 - app.main - INFO - lifespan:16 - Starting application...
+2025-12-06 12:58:55 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 12:58:55 - app.main - INFO - lifespan:19 - Database initialized successfully
+2025-12-06 12:59:16 - app.main - INFO - lifespan:26 - Shutting down application...
+2025-12-06 12:59:17 - app.main - INFO - lifespan:16 - Starting application...
+2025-12-06 12:59:17 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 12:59:17 - app.main - INFO - lifespan:19 - Database initialized successfully
+2025-12-06 12:59:33 - app.main - INFO - lifespan:26 - Shutting down application...
+2025-12-06 12:59:34 - app.main - INFO - lifespan:16 - Starting application...
+2025-12-06 12:59:34 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 12:59:34 - app.main - INFO - lifespan:19 - Database initialized successfully
+2025-12-06 12:59:59 - app.main - INFO - lifespan:26 - Shutting down application...
+2025-12-06 13:00:00 - app.main - INFO - lifespan:16 - Starting application...
+2025-12-06 13:00:00 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 13:00:00 - app.main - INFO - lifespan:19 - Database initialized successfully
+2025-12-06 13:00:25 - app.main - INFO - lifespan:26 - Shutting down application...
+2025-12-06 13:00:26 - app.main - INFO - lifespan:16 - Starting application...
+2025-12-06 13:00:26 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 13:00:26 - app.main - INFO - lifespan:19 - Database initialized successfully
+2025-12-06 13:00:27 - app.main - INFO - lifespan:26 - Shutting down application...
+2025-12-06 13:00:28 - app.main - INFO - lifespan:16 - Starting application...
+2025-12-06 13:00:28 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 13:00:28 - app.main - INFO - lifespan:19 - Database initialized successfully
+2025-12-06 13:00:44 - app.main - INFO - lifespan:26 - Shutting down application...
+2025-12-06 13:00:48 - app.main - INFO - lifespan:16 - Starting application...
+2025-12-06 13:00:48 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 13:00:48 - app.main - INFO - lifespan:19 - Database initialized successfully
+2025-12-06 13:01:33 - app.main - INFO - lifespan:26 - Shutting down application...
+2025-12-06 13:01:34 - app.main - INFO - lifespan:16 - Starting application...
+2025-12-06 13:01:34 - app.database - INFO - init_db:38 - Database tables created successfully
+2025-12-06 13:01:34 - app.main - INFO - lifespan:19 - Database initialized successfully
+2025-12-06 13:07:30 - app.api.v1.endpoints.auth - INFO - login:31 - Login request received for email: user@example.com
+2025-12-06 13:07:30 - app.services.auth_service - INFO - login:31 - Login attempt for email: user@example.com
+2025-12-06 13:07:31 - app.services.auth_service - WARNING - login:40 - Login failed: invalid password for email user@example.com
+2025-12-06 13:07:31 - app.database - ERROR - get_db:28 - Database session error: 401: Invalid email or password
+2025-12-06 13:07:31 - app.main - ERROR - api_exception_handler:48 - API Exception: Invalid email or password - Path: /api/v1/auth/login
+2025-12-06 13:07:44 - app.api.v1.endpoints.auth - INFO - signup:20 - Signup request received for email: user@example.com
+2025-12-06 13:07:44 - app.services.auth_service - INFO - signup:17 - Signup attempt for email: user@example.com
+2025-12-06 13:07:44 - app.services.user_service - INFO - create_user:18 - Creating user with email: user@example.com
+2025-12-06 13:07:44 - app.services.user_service - WARNING - create_user:21 - User creation failed: email user@example.com already exists
+2025-12-06 13:07:44 - app.database - ERROR - get_db:28 - Database session error: 409: User with identifier 'user@example.com' already exists
+2025-12-06 13:07:44 - app.main - ERROR - api_exception_handler:48 - API Exception: User with identifier 'user@example.com' already exists - Path: /api/v1/auth/signup
+2025-12-06 13:07:56 - app.api.v1.endpoints.auth - INFO - login:31 - Login request received for email: user@example.com
+2025-12-06 13:07:56 - app.services.auth_service - INFO - login:31 - Login attempt for email: user@example.com
+2025-12-06 13:07:56 - app.services.auth_service - INFO - login:46 - Login successful for user: e2b6d26a-4c29-45d2-a3c7-2a90a7bbe890
+2025-12-06 13:07:56 - app.api.v1.endpoints.auth - INFO - login:33 - Login completed successfully
+2025-12-06 13:08:11 - app.core.security - WARNING - decode_token:100 - Invalid token: Invalid header string: 'utf-8' codec can't decode byte 0x88 in position 6: invalid start byte
+2025-12-06 13:08:11 - app.dependencies - ERROR - get_current_user:25 - Authentication failed: 401: Token validation failed: Invalid header string: 'utf-8' codec can't decode byte 0x88 in position 6: invalid start byte
+2025-12-06 13:08:11 - app.database - ERROR - get_db:28 - Database session error: 401: Could not validate credentials
+2025-12-06 13:08:11 - app.main - ERROR - api_exception_handler:48 - API Exception: Could not validate credentials - Path: /api/v1/domains/onboard/start
+2025-12-06 13:08:44 - app.core.security - WARNING - decode_token:100 - Invalid token: Invalid header string: 'utf-8' codec can't decode byte 0x88 in position 6: invalid start byte
+2025-12-06 13:08:44 - app.dependencies - ERROR - get_current_user:25 - Authentication failed: 401: Token validation failed: Invalid header string: 'utf-8' codec can't decode byte 0x88 in position 6: invalid start byte
+2025-12-06 13:08:44 - app.database - ERROR - get_db:28 - Database session error: 401: Could not validate credentials
+2025-12-06 13:08:44 - app.main - ERROR - api_exception_handler:48 - API Exception: Could not validate credentials - Path: /api/v1/domains/onboard/start
+2025-12-06 13:08:50 - app.core.security - WARNING - decode_token:100 - Invalid token: Invalid header string: 'utf-8' codec can't decode byte 0x88 in position 6: invalid start byte
+2025-12-06 13:08:50 - app.dependencies - ERROR - get_current_user:25 - Authentication failed: 401: Token validation failed: Invalid header string: 'utf-8' codec can't decode byte 0x88 in position 6: invalid start byte
+2025-12-06 13:08:50 - app.database - ERROR - get_db:28 - Database session error: 401: Could not validate credentials
+2025-12-06 13:08:50 - app.main - ERROR - api_exception_handler:48 - API Exception: Could not validate credentials - Path: /api/v1/auth/me
+2025-12-06 13:09:16 - app.api.v1.endpoints.auth - INFO - get_current_user_info:51 - User info request for user: e2b6d26a-4c29-45d2-a3c7-2a90a7bbe890
+2025-12-06 13:09:23 - app.api.v1.endpoints.domains - INFO - start_domain_onboarding:28 - Domain onboarding start request from user: e2b6d26a-4c29-45d2-a3c7-2a90a7bbe890
+2025-12-06 13:09:23 - app.services.domain_service - INFO - start_onboarding:21 - Starting domain onboarding session
+2025-12-06 13:09:23 - app.agent.domain_onboarding_agent - INFO - start_session:180 - Started onboarding session: 646dae61-d784-4844-8bd7-5b56d7483e58
+2025-12-06 13:10:01 - app.api.v1.endpoints.domains - INFO - send_onboarding_message:44 - Onboarding message from user: e2b6d26a-4c29-45d2-a3c7-2a90a7bbe890, session: string
+2025-12-06 13:10:01 - app.services.domain_service - INFO - process_onboarding_message:26 - Processing onboarding message for session: string
+2025-12-06 13:10:01 - app.database - ERROR - get_db:28 - Database session error: Session string not found
+2025-12-06 13:10:01 - app.main - ERROR - general_exception_handler:57 - Unhandled exception: Session string not found - Path: /api/v1/domains/onboard/message
+Traceback (most recent call last):
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 93, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/middleware/cors.py", line 144, in simple_response
+    await self.app(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/routing.py", line 716, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/routing.py", line 736, in app
+    await route.handle(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/routing.py", line 290, in handle
+    await self.app(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/routing.py", line 119, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py", line 222, in __aexit__
+    await self.gen.athrow(typ, value, traceback)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/concurrency.py", line 35, in contextmanager_in_threadpool
+    raise e
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/concurrency.py", line 27, in contextmanager_in_threadpool
+    yield await run_in_threadpool(cm.__enter__)
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/routing.py", line 105, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/routing.py", line 385, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/venv/lib/python3.11/site-packages/fastapi/routing.py", line 284, in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/app/api/v1/endpoints/domains.py", line 46, in send_onboarding_message
+    question, is_complete, collected_info = domain_service.process_onboarding_message(
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/app/services/domain_service.py", line 27, in process_onboarding_message
+    return self.onboarding_agent.process_message(session_id, user_message)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/montyz/ai-research-framework/app/agent/domain_onboarding_agent.py", line 187, in process_message
+    raise ValueError(f"Session {session_id} not found")
+ValueError: Session string not found
+2025-12-06 13:10:53 - app.api.v1.endpoints.domains - INFO - send_onboarding_message:44 - Onboarding message from user: e2b6d26a-4c29-45d2-a3c7-2a90a7bbe890, session: 646dae61-d784-4844-8bd7-5b56d7483e58
+2025-12-06 13:10:53 - app.services.domain_service - INFO - process_onboarding_message:26 - Processing onboarding message for session: 646dae61-d784-4844-8bd7-5b56d7483e58
+2025-12-06 13:10:58 - app.agent.domain_onboarding_agent - INFO - _extract_information:95 - Extracted info for session 646dae61-d784-4844-8bd7-5b56d7483e58: {'name': 'Lifescience-Clinical', 'description': None, 'use_case': None, 'target_user': None, 'mcp_server_urls': []}
+2025-12-06 13:11:02 - app.agent.domain_onboarding_agent - INFO - _generate_next_question:150 - Generated question for session 646dae61-d784-4844-8bd7-5b56d7483e58: Could you provide a brief description of the Lifescience-Clinical domain?, Complete: False
+2025-12-06 13:11:02 - app.agent.domain_onboarding_agent - INFO - process_message:197 - Processed message for session 646dae61-d784-4844-8bd7-5b56d7483e58, Complete: False
+2025-12-06 13:12:56 - app.api.v1.endpoints.domains - INFO - send_onboarding_message:44 - Onboarding message from user: e2b6d26a-4c29-45d2-a3c7-2a90a7bbe890, session: 646dae61-d784-4844-8bd7-5b56d7483e58
+2025-12-06 13:12:56 - app.services.domain_service - INFO - process_onboarding_message:26 - Processing onboarding message for session: 646dae61-d784-4844-8bd7-5b56d7483e58
+2025-12-06 13:13:01 - app.agent.domain_onboarding_agent - INFO - _extract_information:95 - Extracted info for session 646dae61-d784-4844-8bd7-5b56d7483e58: {'name': 'Lifescience-Clinical', 'description': 'The Life Sciences – Clinical domain focuses on the research, development, and approval of medicines, medical devices, and biological therapies to improve patient health. It covers the entire process from the discovery of a drug to its availability in the market and continued safety monitoring.', 'use_case': None, 'target_user': None, 'mcp_server_urls': []}
+2025-12-06 13:13:05 - app.agent.domain_onboarding_agent - INFO - _generate_next_question:150 - Generated question for session 646dae61-d784-4844-8bd7-5b56d7483e58: What is the primary use case or problem that the Lifescience-Clinical domain is designed to solve?, Complete: False
+2025-12-06 13:13:05 - app.agent.domain_onboarding_agent - INFO - process_message:197 - Processed message for session 646dae61-d784-4844-8bd7-5b56d7483e58, Complete: False
+2025-12-06 13:14:14 - app.api.v1.endpoints.domains - INFO - send_onboarding_message:44 - Onboarding message from user: e2b6d26a-4c29-45d2-a3c7-2a90a7bbe890, session: 646dae61-d784-4844-8bd7-5b56d7483e58
+2025-12-06 13:14:14 - app.services.domain_service - INFO - process_onboarding_message:26 - Processing onboarding message for session: 646dae61-d784-4844-8bd7-5b56d7483e58
+2025-12-06 13:14:18 - app.agent.domain_onboarding_agent - INFO - _extract_information:95 - Extracted info for session 646dae61-d784-4844-8bd7-5b56d7483e58: {'name': 'Lifescience-Clinical', 'description': 'The Life Sciences – Clinical domain focuses on the research, development, and approval of medicines, medical devices, and biological therapies to improve patient health. It covers the entire process from the discovery of a drug to its availability in the market and continued safety monitoring.', 'use_case': 'Creating Study Design Documents for clinical trials according to approved entities.', 'target_user': 'Clinical researchers and regulatory affairs professionals', 'mcp_server_urls': []}
+2025-12-06 13:14:22 - app.agent.domain_onboarding_agent - INFO - _generate_next_question:150 - Generated question for session 646dae61-d784-4844-8bd7-5b56d7483e58: Would you like to provide any MCP server URLs for the Lifescience-Clinical domain, or is there any other detail you'd like to add?, Complete: True
+2025-12-06 13:14:22 - app.agent.domain_onboarding_agent - INFO - process_message:197 - Processed message for session 646dae61-d784-4844-8bd7-5b56d7483e58, Complete: True
+2025-12-06 13:14:41 - app.api.v1.endpoints.domains - INFO - send_onboarding_message:44 - Onboarding message from user: e2b6d26a-4c29-45d2-a3c7-2a90a7bbe890, session: 646dae61-d784-4844-8bd7-5b56d7483e58
+2025-12-06 13:14:41 - app.services.domain_service - INFO - process_onboarding_message:26 - Processing onboarding message for session: 646dae61-d784-4844-8bd7-5b56d7483e58
+2025-12-06 13:14:45 - app.agent.domain_onboarding_agent - INFO - _extract_information:95 - Extracted info for session 646dae61-d784-4844-8bd7-5b56d7483e58: {'name': 'Lifescience-Clinical', 'description': 'The Life Sciences – Clinical domain focuses on the research, development, and approval of medicines, medical devices, and biological therapies to improve patient health. It covers the entire process from the discovery of a drug to its availability in the market and continued safety monitoring.', 'use_case': 'Creating Study Design Documents for clinical trials according to approved entities.', 'target_user': 'Clinical researchers and regulatory affairs professionals', 'mcp_server_urls': []}
+2025-12-06 13:14:51 - app.agent.domain_onboarding_agent - INFO - _generate_next_question:150 - Generated question for session 646dae61-d784-4844-8bd7-5b56d7483e58: Would you like to provide any MCP server URLs for the Lifescience-Clinical domain, or should we proceed without them?, Complete: False
+2025-12-06 13:14:51 - app.agent.domain_onboarding_agent - INFO - process_message:197 - Processed message for session 646dae61-d784-4844-8bd7-5b56d7483e58, Complete: False
+2025-12-06 13:15:03 - app.api.v1.endpoints.domains - INFO - send_onboarding_message:44 - Onboarding message from user: e2b6d26a-4c29-45d2-a3c7-2a90a7bbe890, session: 646dae61-d784-4844-8bd7-5b56d7483e58
+2025-12-06 13:15:03 - app.services.domain_service - INFO - process_onboarding_message:26 - Processing onboarding message for session: 646dae61-d784-4844-8bd7-5b56d7483e58
+2025-12-06 13:15:07 - app.agent.domain_onboarding_agent - INFO - _extract_information:95 - Extracted info for session 646dae61-d784-4844-8bd7-5b56d7483e58: {'name': 'Lifescience-Clinical', 'description': 'The Life Sciences – Clinical domain focuses on the research, development, and approval of medicines, medical devices, and biological therapies to improve patient health. It covers the entire process from the discovery of a drug to its availability in the market and continued safety monitoring.', 'use_case': 'Creating Study Design Documents for clinical trials according to approved entities.', 'target_user': 'Clinical researchers and regulatory affairs professionals', 'mcp_server_urls': []}
+2025-12-06 13:15:11 - app.agent.domain_onboarding_agent - INFO - _generate_next_question:150 - Generated question for session 646dae61-d784-4844-8bd7-5b56d7483e58: Would you like to provide any MCP server URLs for the Lifescience-Clinical domain, or should we proceed without them?, Complete: False
+2025-12-06 13:15:11 - app.agent.domain_onboarding_agent - INFO - process_message:197 - Processed message for session 646dae61-d784-4844-8bd7-5b56d7483e58, Complete: False
+2025-12-06 13:15:40 - app.api.v1.endpoints.domains - INFO - send_onboarding_message:44 - Onboarding message from user: e2b6d26a-4c29-45d2-a3c7-2a90a7bbe890, session: 646dae61-d784-4844-8bd7-5b56d7483e58
+2025-12-06 13:15:40 - app.services.domain_service - INFO - process_onboarding_message:26 - Processing onboarding message for session: 646dae61-d784-4844-8bd7-5b56d7483e58
+2025-12-06 13:15:43 - app.agent.domain_onboarding_agent - INFO - _extract_information:95 - Extracted info for session 646dae61-d784-4844-8bd7-5b56d7483e58: {'name': 'Lifescience-Clinical', 'description': 'The Life Sciences – Clinical domain focuses on the research, development, and approval of medicines, medical devices, and biological therapies to improve patient health. It covers the entire process from the discovery of a drug to its availability in the market and continued safety monitoring.', 'use_case': 'Creating Study Design Documents for clinical trials according to approved entities.', 'target_user': 'Clinical researchers and regulatory affairs professionals', 'mcp_server_urls': []}
+2025-12-06 13:15:48 - app.agent.domain_onboarding_agent - INFO - _generate_next_question:150 - Generated question for session 646dae61-d784-4844-8bd7-5b56d7483e58: Would you like to provide any MCP server URLs for the Lifescience-Clinical domain, or is there any other information you'd like to add?, Complete: True
+2025-12-06 13:15:48 - app.agent.domain_onboarding_agent - INFO - process_message:197 - Processed message for session 646dae61-d784-4844-8bd7-5b56d7483e58, Complete: True
+2025-12-06 13:16:13 - app.api.v1.endpoints.domains - INFO - send_onboarding_message:44 - Onboarding message from user: e2b6d26a-4c29-45d2-a3c7-2a90a7bbe890, session: 646dae61-d784-4844-8bd7-5b56d7483e58
+2025-12-06 13:16:13 - app.services.domain_service - INFO - process_onboarding_message:26 - Processing onboarding message for session: 646dae61-d784-4844-8bd7-5b56d7483e58
+2025-12-06 13:16:16 - app.agent.domain_onboarding_agent - INFO - _extract_information:95 - Extracted info for session 646dae61-d784-4844-8bd7-5b56d7483e58: {'name': 'Lifescience-Clinical', 'description': 'The Life Sciences – Clinical domain focuses on the research, development, and approval of medicines, medical devices, and biological therapies to improve patient health. It covers the entire process from the discovery of a drug to its availability in the market and continued safety monitoring.', 'use_case': 'Creating Study Design Documents for clinical trials according to approved entities.', 'target_user': 'Clinical researchers and regulatory affairs professionals', 'mcp_server_urls': []}
+2025-12-06 13:16:20 - app.agent.domain_onboarding_agent - INFO - _generate_next_question:150 - Generated question for session 646dae61-d784-4844-8bd7-5b56d7483e58: Would you like to provide any MCP server URLs for the Lifescience-Clinical domain, or should we proceed without it?, Complete: True
+2025-12-06 13:16:20 - app.agent.domain_onboarding_agent - INFO - process_message:197 - Processed message for session 646dae61-d784-4844-8bd7-5b56d7483e58, Complete: True
+2025-12-06 13:16:28 - app.api.v1.endpoints.domains - INFO - send_onboarding_message:44 - Onboarding message from user: e2b6d26a-4c29-45d2-a3c7-2a90a7bbe890, session: 646dae61-d784-4844-8bd7-5b56d7483e58
+2025-12-06 13:16:28 - app.services.domain_service - INFO - process_onboarding_message:26 - Processing onboarding message for session: 646dae61-d784-4844-8bd7-5b56d7483e58
+2025-12-06 13:16:29 - app.agent.domain_onboarding_agent - INFO - _extract_information:95 - Extracted info for session 646dae61-d784-4844-8bd7-5b56d7483e58: {'name': 'Lifescience-Clinical', 'description': 'The Life Sciences – Clinical domain focuses on the research, development, and approval of medicines, medical devices, and biological therapies to improve patient health. It covers the entire process from the discovery of a drug to its availability in the market and continued safety monitoring.', 'use_case': 'Creating Study Design Documents for clinical trials according to approved entities.', 'target_user': 'Clinical researchers and regulatory affairs professionals', 'mcp_server_urls': []}
+2025-12-06 13:16:33 - app.agent.domain_onboarding_agent - INFO - _generate_next_question:150 - Generated question for session 646dae61-d784-4844-8bd7-5b56d7483e58: Would you like to provide any MCP server URLs for the Lifescience-Clinical domain, or is there any other information you'd like to add?, Complete: True
+2025-12-06 13:16:33 - app.agent.domain_onboarding_agent - INFO - process_message:197 - Processed message for session 646dae61-d784-4844-8bd7-5b56d7483e58, Complete: True
+2025-12-06 13:16:58 - app.api.v1.endpoints.domains - INFO - complete_domain_onboarding:69 - Completing domain onboarding for user: e2b6d26a-4c29-45d2-a3c7-2a90a7bbe890, session: 646dae61-d784-4844-8bd7-5b56d7483e58
+2025-12-06 13:16:58 - app.services.domain_service - INFO - complete_onboarding:30 - Completing onboarding for session: 646dae61-d784-4844-8bd7-5b56d7483e58
+2025-12-06 13:16:58 - app.repositories.base - INFO - create:23 - Created Domain with id: 408cddb6-40bc-4cc1-bf3d-054c353c60da
+2025-12-06 13:16:58 - app.agent.domain_onboarding_agent - INFO - clear_session:213 - Cleared session: 646dae61-d784-4844-8bd7-5b56d7483e58
+2025-12-06 13:16:58 - app.services.domain_service - INFO - complete_onboarding:59 - Domain created: 408cddb6-40bc-4cc1-bf3d-054c353c60da
+2025-12-06 13:17:12 - app.api.v1.endpoints.domains - INFO - list_domains:83 - List domains request from user: e2b6d26a-4c29-45d2-a3c7-2a90a7bbe890

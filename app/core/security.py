@@ -8,8 +8,11 @@ from app.core.exceptions import InvalidTokenError
 
 logger = setup_logger(__name__)
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
+pwd_context = CryptContext(
+    schemes=["bcrypt"],
+    deprecated="auto",
+    bcrypt__truncate_error=True
+)
 
 class PasswordHandler:
     @staticmethod
@@ -27,7 +30,6 @@ class PasswordHandler:
         except Exception as e:
             logger.error(f"Error verifying password: {str(e)}")
             return False
-
 
 class TokenHandler:
     @staticmethod
